@@ -106,12 +106,15 @@ class Floating_Contacts_Widget {
 	public function enqueue_assets() {
 		$suffix = defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ? '' : '.min';
 
-		wp_enqueue_style(
-			'floating-contacts-fontawesome',
-			'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css',
-			array(),
-			'5.15.3'
-		);
+        // only load FA fonts if custom links are present.
+		if ( ! empty( $this->settings['custom_links'] ) ) {
+			wp_enqueue_style(
+				'floating-contacts-fontawesome',
+				'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css',
+				array(),
+				'5.15.3'
+			);
+		}
 
 		wp_enqueue_style(
 			'floating-contacts-frontend',
