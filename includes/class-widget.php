@@ -207,13 +207,13 @@ class Widget {
 
 		foreach ( $icons as $icon => $enabled ) {
 			if ( $enabled ) {
-				echo '<span data-icon="' . esc_attr( $icon ) . '"></span>';
+				echo '<span data-icon="' . esc_attr( $icon ) . '"></span>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 			}
 		}
 
 		if ( ! empty( $this->settings['custom_links'] ) ) {
 			foreach ( $this->settings['custom_links'] as $link ) {
-				echo '<span data-icon="' . esc_attr( $link['icon'] ) . '"></span>';
+				echo '<span data-icon="' . esc_attr( $link['icon'] ) . '"></span>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 			}
 		}
 	}

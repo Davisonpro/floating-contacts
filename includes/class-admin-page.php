@@ -261,6 +261,7 @@ class Admin_Page {
 	 * Render the general section description.
 	 */
 	public function render_general_section() {
+		// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 		echo '<p>' . esc_html__( 'Configure the general settings for Floating Contacts.', 'floating-contacts' ) . '</p>';
 	}
 
