@@ -1,23 +1,24 @@
 <?php
 /**
- * The plugin bootstrap file
+ * Floating Contacts
  *
- * @link              https://davisonpro.dev/floating-contacts
- * @since             2.0.0
- * @package           DavisonPro\FloatingContacts
+ * @package           Floating_Contacts
+ * @author            Davison Pro
+ * @copyright         2023 Davison Pro
+ * @license           GPL-2.0-or-later
  *
  * @wordpress-plugin
  * Plugin Name:       Floating Contacts
  * Plugin URI:        https://davisonpro.dev/floating-contacts
  * Description:       A customizable floating contact button for your WordPress site.
- * Version:           2.0.0
+ * Version:           1.0.0
+ * Requires at least: 5.2
+ * Requires PHP:      7.4
  * Author:            Davison Pro
  * Author URI:        https://davisonpro.dev
- * License:           GPL-2.0+
- * License URI:       http://www.gnu.org/licenses/gpl-2.0.txt
  * Text Domain:       floating-contacts
- * Domain Path:       /languages
- * Requires PHP:      7.4
+ * License:           GPL v2 or later
+ * License URI:       http://www.gnu.org/licenses/gpl-2.0.txt
  */
 
 // If this file is called directly, abort.
@@ -26,46 +27,42 @@ if ( ! defined( 'WPINC' ) ) {
 }
 
 // Plugin version
-define( 'FLOATING_CONTACTS_VERSION', '2.0.0' );
+define( 'FLOATING_CONTACTS_VERSION', '1.0.0' );
+define( 'FLOATING_CONTACTS_PLUGIN_DIR', plugin_dir_path( __FILE__ ) );
+define( 'FLOATING_CONTACTS_PLUGIN_URL', plugin_dir_url( __FILE__ ) );
 
-// Plugin directory
-define( 'FLOATING_CONTACTS_DIR', plugin_dir_path( __FILE__ ) );
+require_once FLOATING_CONTACTS_PLUGIN_DIR . 'vendor/autoload.php';
 
-// Plugin URL
-define( 'FLOATING_CONTACTS_URL', plugin_dir_url( __FILE__ ) );
-
-require_once FLOATING_CONTACTS_DIR . 'vendor/autoload.php';
-
-register_activation_hook( __FILE__, 'DavisonPro\FloatingContacts\Activator::activate' );
-register_deactivation_hook( __FILE__, 'DavisonPro\FloatingContacts\Deactivator::deactivate' );
+register_activation_hook( __FILE__, array( 'Floating_Contacts_Activator', 'activate' ) );
+register_deactivation_hook( __FILE__, array( 'Floating_Contacts_Activator', 'deactivate' ) );
 
 /**
  * Begins execution of the plugin.
  *
- * @since    2.0.0
+ * @since 1.0.0
  */
-function run_floating_contacts(): void {
+function run_floating_contacts() {
 	// Check PHP version.
 	if ( version_compare( PHP_VERSION, '7.4', '<' ) ) {
 		add_action( 'admin_notices', 'floating_contacts_php_version_error' );
 		return;
 	}
 
-	// Run the plugin.
-	$plugin = DavisonPro\FloatingContacts\FloatingContacts::instance();
-	$plugin->init();
+	// Initialize the plugin.
+	Floating_Contacts::instance();
 }
 
 /**
  * Display an error message if PHP version is too low.
  */
-function floating_contacts_php_version_error(): void {
-	$class   = 'notice notice-error';
+function floating_contacts_php_version_error() {
 	$message = sprintf(
-		__( 'Floating Contacts requires PHP version 7.4 or higher. You are running version %s. Please upgrade your PHP version.', 'floating-contacts' ),
+		/* translators: %s: PHP version */
+		esc_html__( 'Floating Contacts requires PHP version 7.4 or higher. You are running version %s. Please upgrade your PHP version.', 'floating-contacts' ),
 		PHP_VERSION
 	);
-	printf( '<div class="%1$s"><p>%2$s</p></div>', esc_attr( $class ), esc_html( $message ) );
+
+	echo '<div class="notice notice-error"><p>' . $message . '</p></div>';
 }
 
 // Run the plugin

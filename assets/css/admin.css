@@ -164,3 +164,24 @@
 		width: 100%;
 	}
 }
+
+.fc-icon-preview {
+    display: inline-block;
+    margin: 0 5px;
+    width: 30px;
+    height: 30px;
+    font-size: 20px;
+    line-height: 30px;
+    text-align: center;
+}
+
+.fc-custom-link-item {
+    margin-bottom: 15px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #eee;
+}
+
+.description {
+    margin-top: 5px;
+    font-style: italic;
+}

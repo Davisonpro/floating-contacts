@@ -26,8 +26,6 @@ class ComposerStaticInitce5cc0bc067b4ce8af931bdf5b082453
         array (
             'Doctrine\\Instantiator\\' => 22,
             'DeepCopy\\' => 9,
-            'DavisonPro\\FloatingContacts\\Tests\\' => 34,
-            'DavisonPro\\FloatingContacts\\' => 28,
         ),
     );
 
@@ -48,18 +46,14 @@ class ComposerStaticInitce5cc0bc067b4ce8af931bdf5b082453
         array (
             0 => __DIR__ . '/..' . '/myclabs/deep-copy/src/DeepCopy',
         ),
-        'DavisonPro\\FloatingContacts\\Tests\\' => 
-        array (
-            0 => __DIR__ . '/../..' . '/tests',
-        ),
-        'DavisonPro\\FloatingContacts\\' => 
-        array (
-            0 => __DIR__ . '/../..' . '/includes',
-        ),
     );
 
     public static $classMap = array (
         'Composer\\InstalledVersions' => __DIR__ . '/..' . '/composer/InstalledVersions.php',
+        'Floating_Contacts' => __DIR__ . '/../..' . '/includes/class-floating-contacts.php',
+        'Floating_Contacts_Activator' => __DIR__ . '/../..' . '/includes/class-floating-contacts-activator.php',
+        'Floating_Contacts_Admin_Page' => __DIR__ . '/../..' . '/includes/class-floating-contacts-admin-page.php',
+        'Floating_Contacts_Widget' => __DIR__ . '/../..' . '/includes/class-floating-contacts-widget.php',
         'Hamcrest\\Arrays\\IsArray' => __DIR__ . '/..' . '/hamcrest/hamcrest-php/hamcrest/Hamcrest/Arrays/IsArray.php',
         'Hamcrest\\Arrays\\IsArrayContaining' => __DIR__ . '/..' . '/hamcrest/hamcrest-php/hamcrest/Hamcrest/Arrays/IsArrayContaining.php',
         'Hamcrest\\Arrays\\IsArrayContainingInAnyOrder' => __DIR__ . '/..' . '/hamcrest/hamcrest-php/hamcrest/Hamcrest/Arrays/IsArrayContainingInAnyOrder.php',

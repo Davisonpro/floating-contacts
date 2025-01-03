@@ -56,15 +56,5 @@
     "phpsab.executablePathCS": "/Users/davisonpro/.composer/vendor/squizlabs/php_codesniffer/bin/phpcs",
     "phpsab.snifferArguments": [
         "--ignore=*/wp-admin/*,*/wp-includes/*,*/vendor/*"
-    ],
-    "editor.defaultFormatter": "valeryanm.vscode-phpsab",
-    "[php]": {
-        "editor.defaultFormatter": "valeryanm.vscode-phpsab"
-    },
-    "[typescript]": {
-        "editor.defaultFormatter": "esbenp.prettier-vscode"
-    },
-    "[jsonc]": {
-        "editor.defaultFormatter": "esbenp.prettier-vscode"
-    }
+    ]
 }

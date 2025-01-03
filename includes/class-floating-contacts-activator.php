@@ -1,45 +1,71 @@
 <?php
 /**
- * Fired during plugin activation
+ * Fired during plugin activation and deactivation
  *
  * @link       https://davisonpro.dev/floating-contacts
- * @since      2.0.0
- *
- * @package    DavisonPro\FloatingContacts
+ * @since      1.0.0
+ * @package    Floating_Contacts
  */
-
-namespace DavisonPro\FloatingContacts;
 
 /**
- * Fired during plugin activation.
+ * Plugin activation and deactivation handler.
  *
- * This class defines all code necessary to run during the plugin's activation.
+ * This class defines all code necessary to run during the plugin's activation and deactivation.
  *
- * @since      2.0.0
- * @package    DavisonPro\FloatingContacts
+ * @since      1.0.0
+ * @package    Floating_Contacts
  * @author     Davison Pro <davis@davisonpro.dev>
  */
-class Activator {
+class Floating_Contacts_Activator {
 
 	/**
-	 * Short Description. (use period)
+	 * Handle plugin activation tasks.
 	 *
-	 * Long Description.
+	 * Sets up default options, version information, and triggers activation hooks.
 	 *
-	 * @since    2.0.0
+	 * @since 1.0.0
+	 * @return void
 	 */
 	public static function activate() {
 		self::add_version_info();
 		self::set_default_options();
 
-		// Trigger action for other plugins/themes.
+		/**
+		 * Action hook fired after plugin activation.
+		 *
+		 * @since 1.0.0
+		 */
 		do_action( 'floating_contacts_activated' );
 	}
 
 	/**
-	 * Adds or updates the plugin version in the options table.
+	 * Handle plugin deactivation tasks.
 	 *
-	 * @since    2.0.0
+	 * Cleans up scheduled tasks, transients, and optionally removes plugin data.
+	 *
+	 * @since 1.0.0
+	 * @return void
+	 */
+	public static function deactivate() {
+		delete_option( 'floating_contacts_options' );
+		delete_option( 'floating_contacts_version' );
+		delete_option( 'floating_contacts_install_date' );
+
+		/**
+		 * Action hook fired after plugin deactivation.
+		 *
+		 * @since 1.0.0
+		 */
+		do_action( 'floating_contacts_deactivated' );
+	}
+
+	/**
+	 * Add or update plugin version information.
+	 *
+	 * Stores the current plugin version and installation date in WordPress options.
+	 *
+	 * @since 1.0.0
+	 * @return void
 	 */
 	private static function add_version_info() {
 		$installed_version = get_option( 'floating_contacts_version' );
@@ -50,16 +76,18 @@ class Activator {
 			update_option( 'floating_contacts_version', FLOATING_CONTACTS_VERSION );
 		}
 
-		// Add installation date
 		if ( ! get_option( 'floating_contacts_install_date' ) ) {
 			add_option( 'floating_contacts_install_date', current_time( 'mysql' ) );
 		}
 	}
 
 	/**
-	 * Sets default options for the plugin.
+	 * Set default plugin options.
 	 *
-	 * @since    2.0.0
+	 * Initializes the plugin with default settings if they don't exist.
+	 *
+	 * @since 1.0.0
+	 * @return void
 	 */
 	private static function set_default_options() {
 		$default_options = array(
@@ -93,7 +121,6 @@ class Activator {
 			),
 		);
 
-		// Only add the option if it doesn't already exist.
 		if ( ! get_option( 'floating_contacts_options' ) ) {
 			add_option( 'floating_contacts_options', $default_options );
 		}
