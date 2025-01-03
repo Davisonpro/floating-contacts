@@ -7,22 +7,24 @@
  * @since      1.0.0
  */
 
+namespace Floating_Contacts;
+
 /**
- * Class Floating_Contacts_Widget
+ * Class Widget
  *
  * Handles the frontend widget functionality for the Floating Contacts plugin.
  * Implements singleton pattern for performance and single instance management.
  *
  * @since 1.0.0
  */
-class Floating_Contacts_Widget {
+class Widget {
 
 	/**
 	 * The single instance of the class.
 	 *
 	 * @since  1.0.0
 	 * @access private
-	 * @var    Floating_Contacts_Widget|null
+	 * @var    Widget|null
 	 */
 	private static $instance = null;
 
@@ -54,7 +56,7 @@ class Floating_Contacts_Widget {
 	 *
 	 * @since  1.0.0
 	 * @access public
-	 * @return Floating_Contacts_Widget Main instance
+	 * @return Widget Main instance
 	 */
 	public static function instance() {
 		if ( is_null( self::$instance ) ) {
@@ -110,24 +112,24 @@ class Floating_Contacts_Widget {
 		if ( ! empty( $this->settings['custom_links'] ) ) {
 			wp_enqueue_style(
 				'floating-contacts-fontawesome',
-				'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css',
+				PLUGIN_URL . 'assets/libs/font-awesome/css/all.min.css',
 				array(),
-				'5.15.3'
+				'6.7.2'
 			);
 		}
 
 		wp_enqueue_style(
 			'floating-contacts-frontend',
-			FLOATING_CONTACTS_PLUGIN_URL . "assets/css/widget{$suffix}.css",
+			PLUGIN_URL . "assets/css/widget{$suffix}.css",
 			array(),
-			FLOATING_CONTACTS_VERSION
+			VERSION
 		);
 
 		wp_enqueue_script(
 			'floating-contacts-frontend',
-			FLOATING_CONTACTS_PLUGIN_URL . "assets/js/widget{$suffix}.js",
+			PLUGIN_URL . "assets/js/widget{$suffix}.js",
 			array( 'jquery' ),
-			FLOATING_CONTACTS_VERSION,
+			VERSION,
 			true
 		);
 	}

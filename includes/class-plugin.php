@@ -1,25 +1,27 @@
 <?php
 /**
- * Main Floating_Contacts class
+ * Main Plugin class
  *
- * @package Floating_Contacts
+ * @package Plugin
  */
 
+namespace Floating_Contacts;
+
 /**
- * Class Floating_Contacts
+ * Class Plugin
  *
  * Handles the core functionality of the Floating Contacts plugin.
  */
-class Floating_Contacts {
+class Plugin {
 	/**
 	 * The single instance of the class.
 	 *
-	 * @var Floating_Contacts|null
+	 * @var Plugin|null
 	 */
 	private static $instance = null;
 
 	/**
-	 * Floating_Contacts constructor.
+	 * Plugin constructor.
 	 */
 	private function __construct() {
 		$this->init_hooks();
@@ -27,11 +29,11 @@ class Floating_Contacts {
 	}
 
 	/**
-	 * Main Floating_Contacts Instance.
+	 * Main Plugin Instance.
 	 *
-	 * Ensures only one instance of Floating_Contacts is loaded or can be loaded.
+	 * Ensures only one instance of Plugin is loaded or can be loaded.
 	 *
-	 * @return Floating_Contacts Main instance.
+	 * @return Plugin Main instance.
 	 */
 	public static function instance() {
 		if ( is_null( self::$instance ) ) {
@@ -57,8 +59,8 @@ class Floating_Contacts {
 	 * @access private
 	 */
 	private function load_dependencies() {
-		Floating_Contacts_Admin_Page::instance();
-		Floating_Contacts_Widget::instance();
+		Admin_Page::instance();
+		Widget::instance();
 	}
 
 	/**

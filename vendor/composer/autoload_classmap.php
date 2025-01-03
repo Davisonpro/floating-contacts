@@ -7,10 +7,6 @@ $baseDir = dirname($vendorDir);
 
 return array(
     'Composer\\InstalledVersions' => $vendorDir . '/composer/InstalledVersions.php',
-    'Floating_Contacts' => $baseDir . '/includes/class-floating-contacts.php',
-    'Floating_Contacts_Activator' => $baseDir . '/includes/class-floating-contacts-activator.php',
-    'Floating_Contacts_Admin_Page' => $baseDir . '/includes/class-floating-contacts-admin-page.php',
-    'Floating_Contacts_Widget' => $baseDir . '/includes/class-floating-contacts-widget.php',
     'Hamcrest\\Arrays\\IsArray' => $vendorDir . '/hamcrest/hamcrest-php/hamcrest/Hamcrest/Arrays/IsArray.php',
     'Hamcrest\\Arrays\\IsArrayContaining' => $vendorDir . '/hamcrest/hamcrest-php/hamcrest/Hamcrest/Arrays/IsArrayContaining.php',
     'Hamcrest\\Arrays\\IsArrayContainingInAnyOrder' => $vendorDir . '/hamcrest/hamcrest-php/hamcrest/Hamcrest/Arrays/IsArrayContainingInAnyOrder.php',

@@ -7,6 +7,8 @@
  * @package    Floating_Contacts
  */
 
+namespace Floating_Contacts;
+
 /**
  * Plugin activation and deactivation handler.
  *
@@ -16,7 +18,7 @@
  * @package    Floating_Contacts
  * @author     Davison Pro <davis@davisonpro.dev>
  */
-class Floating_Contacts_Activator {
+class Activator {
 
 	/**
 	 * Handle plugin activation tasks.

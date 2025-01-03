@@ -16,11 +16,6 @@
         "phpunit/phpunit": "^9.0",
         "mockery/mockery": "^1.3"
     },
-   "autoload": {
-        "classmap": [
-            "includes/"
-        ]
-    },
     "scripts": {
         "test": "phpunit"
     }

@@ -8,33 +8,35 @@
  * @package    Floating_Contacts
  */
 
+namespace Floating_Contacts;
+
 /**
  * The admin-specific functionality of the plugin.
  *
  * @package    Floating_Contacts
- * @author     Davison Pro <contact@davisonpro.dev>
+ * @author     Davison Pro <davis@davisonpro.dev>
  */
-class Floating_Contacts_Admin_Page {
+class Admin_Page {
 	/**
 	 * The single instance of the class.
 	 *
-	 * @var Floating_Contacts_Admin_Page|null
+	 * @var Admin_Page|null
 	 */
 	private static $instance = null;
 
 	/**
-	 * Floating_Contacts_Admin_Page constructor.
+	 * Admin_Page constructor.
 	 */
 	private function __construct() {
 		$this->init();
 	}
 
 	/**
-	 * Main Floating_Contacts_Admin_Page Instance.
+	 * Main Admin_Page Instance.
 	 *
-	 * Ensures only one instance of Floating_Contacts_Admin_Page is loaded or can be loaded.
+	 * Ensures only one instance of Admin_Page is loaded or can be loaded.
 	 *
-	 * @return Floating_Contacts_Admin_Page Main instance.
+	 * @return Admin_Page Main instance.
 	 */
 	public static function instance() {
 		if ( is_null( self::$instance ) ) {
@@ -105,23 +107,23 @@ class Floating_Contacts_Admin_Page {
 
 		wp_enqueue_style(
 			'floating-contacts-fontawesome',
-			'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css',
+			PLUGIN_DIR . 'assets/libs/font-awesome/css/all.min.css',
 			array(),
-			'5.15.3'
+			'6.7.2'
 		);
 
 		wp_enqueue_style(
 			'floating-contacts-admin',
-			FLOATING_CONTACTS_PLUGIN_URL . "assets/css/admin{$suffix}.css",
+			PLUGIN_DIR . "assets/css/admin{$suffix}.css",
 			array(),
-			FLOATING_CONTACTS_VERSION
+			VERSION
 		);
 
 		wp_enqueue_script(
 			'floating-contacts-admin',
-			FLOATING_CONTACTS_PLUGIN_URL . "assets/js/admin{$suffix}.js",
+			PLUGIN_DIR . "assets/js/admin{$suffix}.js",
 			array( 'jquery', 'wp-color-picker', 'wp-util' ),
-			FLOATING_CONTACTS_VERSION,
+			VERSION,
 			true
 		);
 
@@ -345,14 +347,14 @@ class Floating_Contacts_Admin_Page {
 	 * @param array $link  The link data.
 	 */
 	public function render_custom_link_fields( $index, $link = array() ) {
-		$label = isset( $link['label'] ) ? esc_attr( $link['label'] ) : '';
-		$url   = isset( $link['url'] ) ? esc_url( $link['url'] ) : '';
-		$icon  = isset( $link['icon'] ) ? esc_attr( $link['icon'] ) : '';
+		$label = isset( $link['label'] ) ? $link['label'] : '';
+		$url   = isset( $link['url'] ) ? $link['url'] : '';
+		$icon  = isset( $link['icon'] ) ? $link['icon'] : '';
 		?>
 		<div class="fc-custom-link-item">
-			<input type="text" name="floating_contacts_options[custom_links][<?php echo $index; ?>][label]" value="<?php echo $label; ?>" placeholder="<?php esc_attr_e( 'Label', 'floating-contacts' ); ?>" class="fc-input" autocomplete="off">
-			<input type="url" name="floating_contacts_options[custom_links][<?php echo $index; ?>][url]" value="<?php echo $url; ?>" placeholder="<?php esc_attr_e( 'https://', 'floating-contacts' ); ?>" class="fc-input" autocomplete="off">
-			<input type="text" name="floating_contacts_options[custom_links][<?php echo $index; ?>][icon]" value="<?php echo $icon; ?>" placeholder="<?php esc_attr_e( 'fa-icon-name', 'floating-contacts' ); ?>" class="fc-input fc-icon-input" autocomplete="off">
+			<input type="text" name="floating_contacts_options[custom_links][<?php echo absint( $index ); ?>][label]" value="<?php echo esc_attr( $label ); ?>" placeholder="<?php esc_attr_e( 'Label', 'floating-contacts' ); ?>" class="fc-input" autocomplete="off">
+			<input type="url" name="floating_contacts_options[custom_links][<?php echo absint( $index ); ?>][url]" value="<?php echo esc_attr( $url ); ?>" placeholder="<?php esc_attr_e( 'https://', 'floating-contacts' ); ?>" class="fc-input" autocomplete="off">
+			<input type="text" name="floating_contacts_options[custom_links][<?php echo absint( $index ); ?>][icon]" value="<?php echo esc_attr( $icon ); ?>" placeholder="<?php esc_attr_e( 'fa-icon-name', 'floating-contacts' ); ?>" class="fc-input fc-icon-input" autocomplete="off">
 			<span class="fc-icon-preview"></span>
 			<button type="button" class="fc-button fc-button-danger remove-custom-link"><?php esc_html_e( 'Remove', 'floating-contacts' ); ?></button>
 		</div>
