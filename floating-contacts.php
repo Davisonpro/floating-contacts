@@ -92,7 +92,7 @@ function php_version_error() {
  *
  * @return void
  */
-function wordpress_version_error(): void {
+function wordpress_version_error() {
 	$message = sprintf(
 		/* translators: 1: Current WordPress version 2: Required WordPress version */
 		esc_html__( 'Floating Contacts requires WordPress version %2$s or higher. You are running version %1$s. Please upgrade WordPress.', 'floating-contacts' ),

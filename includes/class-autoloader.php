@@ -54,7 +54,7 @@ class Autoloader {
 	 *
 	 * @return void
 	 */
-	public function register(): void {
+	public function register() {
 		spl_autoload_register( array( $this, 'autoload' ) );
 	}
 
@@ -65,7 +65,7 @@ class Autoloader {
 	 * @param string $base_dir The base directory for the namespace prefix.
 	 * @return void
 	 */
-	public function add_psr4_mapping( string $prefix, string $base_dir ): void {
+	public function add_psr4_mapping( string $prefix, string $base_dir ) {
 		$prefix   = trim( $prefix, '\\' ) . '\\';
 		$base_dir = rtrim( $base_dir, DIRECTORY_SEPARATOR ) . '/';
 
@@ -78,7 +78,7 @@ class Autoloader {
 	 * @param string $class Full class name.
 	 * @return void
 	 */
-	public function autoload( string $class ): void {
+	public function autoload( string $class ) {
 		$prefix = $this->namespace_prefix . '\\';
 
 		if ( strpos( $class, $prefix ) !== 0 ) {
@@ -123,7 +123,7 @@ class Autoloader {
 	 * @param string $file The file to require.
 	 * @return bool True if the file exists, false if not.
 	 */
-	private function require_file( string $file ): bool {
+	private function require_file( string $file ) {
 		if ( file_exists( $file ) ) {
 			require_once $file;
 			return true;
