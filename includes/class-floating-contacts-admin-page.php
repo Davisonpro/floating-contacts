@@ -234,7 +234,7 @@ class Floating_Contacts_Admin_Page {
 					
 					<div class="fc-field-group">
 						<label class="fc-label" for="floating_contacts_bg_color"><?php esc_html_e( 'Background Color', 'floating-contacts' ); ?></label>
-						<input type="text" id="floating_contacts_bg_color" name="floating_contacts_options[bg_color]" value="<?php echo esc_attr( $options['bg_color'] ?? '#0073aa' ); ?>" class="floating-contacts-color-field">
+						<input type="text" id="floating_contacts_bg_color" name="floating_contacts_options[bg_color]" value="<?php echo esc_attr( $options['bg_color'] ?? '#1e88e5' ); ?>" class="floating-contacts-color-field">
 					</div>
 					<div class="fc-field-group">
 						<label class="fc-label" for="floating_contacts_position"><?php esc_html_e( 'Position', 'floating-contacts' ); ?></label>
@@ -292,7 +292,7 @@ class Floating_Contacts_Admin_Page {
 		$sanitized_input['whatsapp_message'] = isset( $input['whatsapp_message'] ) ? sanitize_textarea_field( $input['whatsapp_message'] ) : $default_options['whatsapp_message'];
 
 		// Sanitize color.
-		$sanitized_input['bg_color'] = isset( $input['bg_color'] ) ? sanitize_hex_color( $input['bg_color'] ) : $default_options['bg_color'];
+		$sanitized_input['bg_color'] = isset( $input['bg_color'] ) && ! empty( $input['bg_color'] ) ? sanitize_hex_color( $input['bg_color'] ) : $default_options['bg_color'];
 
 		// Sanitize position.
 		$valid_positions             = array( 'bottom-right', 'bottom-left' );
@@ -331,7 +331,7 @@ class Floating_Contacts_Admin_Page {
 			'whatsapp_enabled' => false,
 			'whatsapp_number'  => '',
 			'whatsapp_message' => '',
-			'bg_color'         => '#0073aa',
+			'bg_color'         => '#1e88e5',
 			'position'         => 'bottom-right',
 			'custom_links'     => array(),
 		);
@@ -350,9 +350,9 @@ class Floating_Contacts_Admin_Page {
 		$icon  = isset( $link['icon'] ) ? esc_attr( $link['icon'] ) : '';
 		?>
 		<div class="fc-custom-link-item">
-			<input type="text" name="floating_contacts_options[custom_links][<?php echo $index; ?>][label]" value="<?php echo $label; ?>" placeholder="<?php esc_attr_e( 'Label', 'floating-contacts' ); ?>" class="fc-input">
-			<input type="url" name="floating_contacts_options[custom_links][<?php echo $index; ?>][url]" value="<?php echo $url; ?>" placeholder="<?php esc_attr_e( 'https://', 'floating-contacts' ); ?>" class="fc-input">
-			<input type="text" name="floating_contacts_options[custom_links][<?php echo $index; ?>][icon]" value="<?php echo $icon; ?>" placeholder="<?php esc_attr_e( 'fa-icon-name', 'floating-contacts' ); ?>" class="fc-input fc-icon-input">
+			<input type="text" name="floating_contacts_options[custom_links][<?php echo $index; ?>][label]" value="<?php echo $label; ?>" placeholder="<?php esc_attr_e( 'Label', 'floating-contacts' ); ?>" class="fc-input" autocomplete="off">
+			<input type="url" name="floating_contacts_options[custom_links][<?php echo $index; ?>][url]" value="<?php echo $url; ?>" placeholder="<?php esc_attr_e( 'https://', 'floating-contacts' ); ?>" class="fc-input" autocomplete="off">
+			<input type="text" name="floating_contacts_options[custom_links][<?php echo $index; ?>][icon]" value="<?php echo $icon; ?>" placeholder="<?php esc_attr_e( 'fa-icon-name', 'floating-contacts' ); ?>" class="fc-input fc-icon-input" autocomplete="off">
 			<span class="fc-icon-preview"></span>
 			<button type="button" class="fc-button fc-button-danger remove-custom-link"><?php esc_html_e( 'Remove', 'floating-contacts' ); ?></button>
 		</div>

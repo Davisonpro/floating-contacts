@@ -1,6 +1,6 @@
 jQuery(document).ready(function($) {
     $('.floating-contacts-color-field').wpColorPicker({
-        defaultColor: '#0073aa',
+        defaultColor: '#1e88e5',
     });
 
     var customLinkIndex = FC_Admin.totalCustomLinks;

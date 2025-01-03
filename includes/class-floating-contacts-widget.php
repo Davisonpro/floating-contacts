@@ -106,7 +106,7 @@ class Floating_Contacts_Widget {
 	public function enqueue_assets() {
 		$suffix = defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ? '' : '.min';
 
-        // only load FA fonts if custom links are present.
+		// only load FA fonts if custom links are present.
 		if ( ! empty( $this->settings['custom_links'] ) ) {
 			wp_enqueue_style(
 				'floating-contacts-fontawesome',
