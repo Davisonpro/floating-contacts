@@ -90,12 +90,26 @@ class Widget {
 	 * @return bool
 	 */
 	private function should_load() {
-		if ( empty( array_filter( $this->settings ) ) ) {
+		if ( ! $this->has_contacts() ) {
 			return false;
 		}
 
 		// Allow developers to prevent widget loading.
 		return apply_filters( 'floating_contacts_should_load', true );
+	}
+
+	/**
+	 * Check if there are any contacts to display.
+	 *
+	 * @return bool
+	 */
+	private function has_contacts() {
+		return (
+			( ! empty( $this->settings['phone_enabled'] ) && ! empty( $this->settings['phone_number'] ) ) ||
+			( ! empty( $this->settings['email_enabled'] ) && ! empty( $this->settings['email_address'] ) ) ||
+			( ! empty( $this->settings['whatsapp_enabled'] ) && ! empty( $this->settings['whatsapp_number'] ) ) ||
+			! empty( $this->settings['custom_links'] )
+		);
 	}
 
 	/**

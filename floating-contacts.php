@@ -123,8 +123,8 @@ function initialize() {
 	}
 
 	// Register activation and deactivation hooks.
-	register_activation_hook( __FILE__, array( 'Floating_Contacts\Activator', 'activate' ) );
-	register_deactivation_hook( __FILE__, array( 'Floating_Contacts\Activator', 'deactivate' ) );
+	register_activation_hook( __FILE__, array( Activator::class, 'activate' ) );
+	register_deactivation_hook( __FILE__, array( Activator::class, 'deactivate' ) );
 
 	// Initialize the plugin.
 	Plugin::instance();

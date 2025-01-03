@@ -107,21 +107,21 @@ class Admin_Page {
 
 		wp_enqueue_style(
 			'floating-contacts-fontawesome',
-			PLUGIN_DIR . 'assets/libs/font-awesome/css/all.min.css',
+			PLUGIN_URL . 'assets/libs/font-awesome/css/all.min.css',
 			array(),
 			'6.7.2'
 		);
 
 		wp_enqueue_style(
 			'floating-contacts-admin',
-			PLUGIN_DIR . "assets/css/admin{$suffix}.css",
+			PLUGIN_URL . "assets/css/admin{$suffix}.css",
 			array(),
 			VERSION
 		);
 
 		wp_enqueue_script(
 			'floating-contacts-admin',
-			PLUGIN_DIR . "assets/js/admin{$suffix}.js",
+			PLUGIN_URL . "assets/js/admin{$suffix}.js",
 			array( 'jquery', 'wp-color-picker', 'wp-util' ),
 			VERSION,
 			true
@@ -247,7 +247,7 @@ class Admin_Page {
 					</div>
 				</div>
 
-				<?php submit_button( __( 'Save Settings', 'floating-contacts' ), 'fc-button fc-button-primary', 'submit', true, array( 'id' => 'fc-submit' ) ); ?>
+				<?php submit_button( __( 'Save Settings', 'floating-contacts' ), 'button-primary button-large', 'submit', true, array( 'id' => 'fc-submit' ) ); ?>
 			</form>
 		</div>
 
