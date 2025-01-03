@@ -46,7 +46,8 @@ zip -r "./$ZIP_FILE" . \
     ".wordpress-org/*" \
     ".vscode/*" \
     ".gitignore" \
-    ".DS_Store" \
+    "*.DS_Store" \
+    "**/.DS_Store" \
     "*.log" \
     "*.zip" \
     "build.sh" \
