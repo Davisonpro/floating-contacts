@@ -3,7 +3,7 @@ jQuery(document).ready(function($) {
         defaultColor: '#1e88e5',
     });
 
-    var customLinkIndex = FC_Admin.totalCustomLinks;
+    var customLinkIndex = parseInt( FC_Admin.totalCustomLinks );
     var $customLinksContainer = $('#floating-contacts-custom-links');
 
     $('#add-custom-link').on('click', function() {

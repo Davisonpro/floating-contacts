@@ -131,7 +131,7 @@ class Admin_Page {
 			'floating-contacts-admin',
 			'FC_Admin',
 			array(
-				'totalCustomLinks' => count( $options['custom_links'] ?? array() ),
+				'totalCustomLinks' => (int) count( $options['custom_links'] ?? array() ),
 			)
 		);
 	}
@@ -353,9 +353,9 @@ class Admin_Page {
 		$icon  = isset( $link['icon'] ) ? $link['icon'] : '';
 		?>
 		<div class="fc-custom-link-item">
-			<input type="text" name="floating_contacts_options[custom_links][<?php echo absint( $index ); ?>][label]" value="<?php echo esc_attr( $label ); ?>" placeholder="<?php esc_attr_e( 'Label', 'floating-contacts' ); ?>" class="fc-input" autocomplete="off">
-			<input type="url" name="floating_contacts_options[custom_links][<?php echo absint( $index ); ?>][url]" value="<?php echo esc_attr( $url ); ?>" placeholder="<?php esc_attr_e( 'https://', 'floating-contacts' ); ?>" class="fc-input" autocomplete="off">
-			<input type="text" name="floating_contacts_options[custom_links][<?php echo absint( $index ); ?>][icon]" value="<?php echo esc_attr( $icon ); ?>" placeholder="<?php esc_attr_e( 'fa-icon-name', 'floating-contacts' ); ?>" class="fc-input fc-icon-input" autocomplete="off">
+			<input type="text" name="floating_contacts_options[custom_links][<?php echo esc_attr( $index ); ?>][label]" value="<?php echo esc_attr( $label ); ?>" placeholder="<?php esc_attr_e( 'Label', 'floating-contacts' ); ?>" class="fc-input" autocomplete="off">
+			<input type="url" name="floating_contacts_options[custom_links][<?php echo esc_attr( $index ); ?>][url]" value="<?php echo esc_attr( $url ); ?>" placeholder="<?php esc_attr_e( 'https://', 'floating-contacts' ); ?>" class="fc-input" autocomplete="off">
+			<input type="text" name="floating_contacts_options[custom_links][<?php echo esc_attr( $index ); ?>][icon]" value="<?php echo esc_attr( $icon ); ?>" placeholder="<?php esc_attr_e( 'fa-icon-name', 'floating-contacts' ); ?>" class="fc-input fc-icon-input" autocomplete="off">
 			<span class="fc-icon-preview"></span>
 			<button type="button" class="fc-button fc-button-danger remove-custom-link"><?php esc_html_e( 'Remove', 'floating-contacts' ); ?></button>
 		</div>
