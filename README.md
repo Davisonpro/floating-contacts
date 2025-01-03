@@ -2,6 +2,8 @@
 
 Floating Contacts is a WordPress plugin that adds a customizable floating contact button to your website, allowing visitors to easily reach you through various communication channels.
 
+![Screenshot](assets/images/screenshot.png)
+
 ## Features
 
 - Customizable floating contact button
