@@ -22,10 +22,8 @@ class Floating_Contacts {
 	 * Floating_Contacts constructor.
 	 */
 	private function __construct() {
-		add_action( 'plugins_loaded', array( $this, 'load_plugin_textdomain' ) );
-
-		Floating_Contacts_Admin_Page::instance();
-		Floating_Contacts_Widget::instance();
+		$this->init_hooks();
+		$this->load_dependencies();
 	}
 
 	/**
@@ -41,6 +39,26 @@ class Floating_Contacts {
 		}
 
 		return self::$instance;
+	}
+
+	/**
+	 * Initialize hooks.
+	 *
+	 * @since 1.0.0
+	 */
+	private function init_hooks() {
+		add_action( 'plugins_loaded', array( $this, 'load_plugin_textdomain' ) );
+	}
+
+	/**
+	 * Load the required dependencies for this plugin.
+	 *
+	 * @since  1.0.0
+	 * @access private
+	 */
+	private function load_dependencies() {
+		Floating_Contacts_Admin_Page::instance();
+		Floating_Contacts_Widget::instance();
 	}
 
 	/**

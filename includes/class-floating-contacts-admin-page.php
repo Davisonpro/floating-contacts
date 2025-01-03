@@ -198,7 +198,7 @@ class Floating_Contacts_Admin_Page {
 							<span class="fc-checkbox-text"><?php esc_html_e( 'Enable WhatsApp', 'floating-contacts' ); ?></span>
 						</label>
 						<input type="text" id="floating_contacts_whatsapp_number" name="floating_contacts_options[whatsapp_number]" value="<?php echo esc_attr( $options['whatsapp_number'] ?? '' ); ?>" placeholder="<?php esc_attr_e( 'WhatsApp Number', 'floating-contacts' ); ?>" class="fc-input">
-                        <br></br>
+						<br></br>
 						<textarea id="floating_contacts_whatsapp_message" name="floating_contacts_options[whatsapp_message]" placeholder="<?php esc_attr_e( 'WhatsApp Message', 'floating-contacts' ); ?>" class="fc-textarea"><?php echo esc_textarea( $options['whatsapp_message'] ?? '' ); ?></textarea>
 					</div>
 				</div>
