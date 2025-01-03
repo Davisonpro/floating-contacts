@@ -88,6 +88,22 @@ function php_version_error() {
 }
 
 /**
+ * Display WordPress version error.
+ *
+ * @return void
+ */
+function wordpress_version_error(): void {
+	$message = sprintf(
+		/* translators: 1: Current WordPress version 2: Required WordPress version */
+		esc_html__( 'Floating Contacts requires WordPress version %2$s or higher. You are running version %1$s. Please upgrade WordPress.', 'floating-contacts' ),
+		get_bloginfo( 'version' ),
+		MINIMUM_WP_VERSION
+	);
+
+	printf( '<div class="notice notice-error"><p>%s</p></div>', esc_html( $message ) );
+}
+
+/**
  * Begins execution of the plugin.
  *
  * @since 1.0.0
