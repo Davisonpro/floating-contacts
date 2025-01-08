@@ -54,7 +54,7 @@ Yes, the Floating Contacts widget is designed to work well on both desktop and m
 
 ### Can I add custom contact methods?
 
-The current version supports Live Chat, Phone, Email, and WhatsApp. Custom contact methods are not supported out of the box, but may be added in future updates.
+Yes, the plugin supports custom contact methods. In addition to the built-in options (Live Chat, Phone, Email, and WhatsApp), you can add your own custom contact methods through the plugin settings.
 
 ## Support
 

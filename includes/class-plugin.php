@@ -49,7 +49,6 @@ class Plugin {
 	 * @since 1.0.0
 	 */
 	private function init_hooks() {
-		add_action( 'plugins_loaded', array( $this, 'load_plugin_textdomain' ) );
 	}
 
 	/**
@@ -61,16 +60,5 @@ class Plugin {
 	private function load_dependencies() {
 		Admin_Page::instance();
 		Widget::instance();
-	}
-
-	/**
-	 * Load the plugin text domain for translation.
-	 */
-	public function load_plugin_textdomain() {
-		load_plugin_textdomain(
-			'floating-contacts',
-			false,
-			dirname( dirname( plugin_basename( __FILE__ ) ) ) . '/languages/'
-		);
 	}
 }

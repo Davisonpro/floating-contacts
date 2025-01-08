@@ -1,5 +1,5 @@
 === Floating Contacts ===
-Contributors: davisonpro
+Contributors: davisonprodev
 Tags: contact, floating button, whatsapp, email
 Requires at least: 5.2
 Tested up to: 6.7
@@ -42,6 +42,20 @@ Yes, the Floating Contacts widget is designed to work well on both desktop and m
 
 1. Floating contact button on website
 2. Admin settings page
+
+== External services ==
+
+This plugin connects to the WhatsApp API to generate a contact link for the floating contact button. It is needed to allow users to quickly contact via WhatsApp when they click the button.
+
+It sends the phone number configured in the plugin settings to the WhatsApp API each time the floating contact button is displayed. The API is called when the user interacts with the button.
+
+Service: WhatsApp API
+What data is sent: The phone number configured in the plugin settings.
+When the data is sent: Every time the floating contact button is loaded or clicked.
+
+Service provider: WhatsApp Inc.
+- Terms of Service: https://www.whatsapp.com/legal/business-terms/
+- Privacy Policy: https://www.whatsapp.com/legal/privacy-policy/
 
 == Changelog ==
 

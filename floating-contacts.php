@@ -31,23 +31,24 @@ if ( ! defined( 'WPINC' ) ) {
 }
 
 // Define plugin constants.
-define( __NAMESPACE__ . '\VERSION', '1.0.0' );
-define( __NAMESPACE__ . '\MINIMUM_PHP_VERSION', '7.4' );
-define( __NAMESPACE__ . '\MINIMUM_WP_VERSION', '5.2' );
-define( __NAMESPACE__ . '\PLUGIN_DIR', plugin_dir_path( __FILE__ ) );
-define( __NAMESPACE__ . '\PLUGIN_URL', plugin_dir_url( __FILE__ ) );
+define( 'FLOATING_CONTACTS_VERSION', '1.0.0' );
+define( 'FLOATING_CONTACTS_MINIMUM_PHP_VERSION', '7.4' );
+define( 'FLOATING_CONTACTS_MINIMUM_WP_VERSION', '5.2' );
+define( 'FLOATING_CONTACTS_NAMESPACE', __NAMESPACE__ );
+define( 'FLOATING_CONTACTS_PLUGIN_DIR', plugin_dir_path( __FILE__ ) );
+define( 'FLOATING_CONTACTS_PLUGIN_URL', plugin_dir_url( __FILE__ ) );
 
 /**
  * Display missing dependencies error.
  *
  * @return void
  */
-function missing_composer_dependencies() {
+function floating_contacts_missing_composer_dependencies() {
 	$message = sprintf(
 		/* translators: 1: composer command. 2: plugin directory */
 		esc_html__( 'Your installation of the Floating Contacts plugin is incomplete. Please run %1$s within the %2$s plugin directory.', 'floating-contacts' ),
 		'<code>composer install</code>',
-		'<code>' . esc_html( str_replace( ABSPATH, '', PLUGIN_DIR ) ) . '</code>'
+		'<code>' . esc_html( plugin_dir_path() ) . '</code>'
 	);
 
 	printf( '<div class="notice notice-error"><p>%s</p></div>', wp_kses_post( $message ) );
@@ -56,18 +57,18 @@ function missing_composer_dependencies() {
 /**
  * Autoload classes.
  */
-if ( ! file_exists( PLUGIN_DIR . 'vendor/autoload.php' ) ) {
-	add_action( 'admin_notices', __NAMESPACE__ . '\missing_composer_dependencies' );
+if ( ! file_exists( FLOATING_CONTACTS_PLUGIN_DIR . 'vendor/autoload.php' ) ) {
+	add_action( 'admin_notices', 'floating_contacts_missing_composer_dependencies' );
 	return;
 }
 
-require_once PLUGIN_DIR . 'vendor/autoload.php';
+require_once FLOATING_CONTACTS_PLUGIN_DIR . 'vendor/autoload.php';
 
 /**
  * Autoload classes.
  */
-require_once PLUGIN_DIR . 'includes/class-autoloader.php';
-$autoloader = new Autoloader( __NAMESPACE__, PLUGIN_DIR );
+require_once FLOATING_CONTACTS_PLUGIN_DIR . 'includes/class-autoloader.php';
+$autoloader = new Autoloader( FLOATING_CONTACTS_NAMESPACE, FLOATING_CONTACTS_PLUGIN_DIR );
 $autoloader->register();
 
 
@@ -76,12 +77,12 @@ $autoloader->register();
  *
  * @return void
  */
-function php_version_error() {
+function floating_contacts_php_version_error() {
 	$message = sprintf(
 		/* translators: 1: Current PHP version 2: Required PHP version */
 		esc_html__( 'Floating Contacts requires PHP version %2$s or higher. You are running version %1$s. Please upgrade your PHP version.', 'floating-contacts' ),
 		PHP_VERSION,
-		MINIMUM_PHP_VERSION
+		FLOATING_CONTACTS_MINIMUM_PHP_VERSION
 	);
 
 	printf( '<div class="notice notice-error"><p>%s</p></div>', esc_html( $message ) );
@@ -92,12 +93,12 @@ function php_version_error() {
  *
  * @return void
  */
-function wordpress_version_error() {
+function floating_contacts_wordpress_version_error() {
 	$message = sprintf(
 		/* translators: 1: Current WordPress version 2: Required WordPress version */
 		esc_html__( 'Floating Contacts requires WordPress version %2$s or higher. You are running version %1$s. Please upgrade WordPress.', 'floating-contacts' ),
 		get_bloginfo( 'version' ),
-		MINIMUM_WP_VERSION
+		FLOATING_CONTACTS_MINIMUM_WP_VERSION
 	);
 
 	printf( '<div class="notice notice-error"><p>%s</p></div>', esc_html( $message ) );
@@ -109,16 +110,16 @@ function wordpress_version_error() {
  * @since 1.0.0
  * @return void
  */
-function initialize() { 
+function floating_contacts_initialize() {
 	// Check PHP version.
-	if ( version_compare( PHP_VERSION, MINIMUM_PHP_VERSION, '<' ) ) {
-		add_action( 'admin_notices', __NAMESPACE__ . '\php_version_error' );
+	if ( version_compare( PHP_VERSION, FLOATING_CONTACTS_MINIMUM_PHP_VERSION, '<' ) ) {
+		add_action( 'admin_notices', FLOATING_CONTACTS_NAMESPACE . '\floating_contacts_php_version_error' );
 		return;
 	}
 
 	// Check WordPress version.
-	if ( version_compare( get_bloginfo( 'version' ), MINIMUM_WP_VERSION, '<' ) ) {
-		add_action( 'admin_notices', __NAMESPACE__ . '\wordpress_version_error' );
+	if ( version_compare( get_bloginfo( 'version' ), FLOATING_CONTACTS_MINIMUM_WP_VERSION, '<' ) ) {
+		add_action( 'admin_notices', FLOATING_CONTACTS_NAMESPACE . '\floating_contacts_wordpress_version_error' );
 		return;
 	}
 
@@ -130,4 +131,4 @@ function initialize() {
 	Plugin::instance();
 }
 
-add_action( 'plugins_loaded', __NAMESPACE__ . '\initialize' );
+add_action( 'plugins_loaded', FLOATING_CONTACTS_NAMESPACE . '\floating_contacts_initialize' );

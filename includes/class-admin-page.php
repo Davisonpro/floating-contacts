@@ -107,23 +107,23 @@ class Admin_Page {
 
 		wp_enqueue_style(
 			'floating-contacts-fontawesome',
-			PLUGIN_URL . 'assets/libs/font-awesome/css/all.min.css',
+			FLOATING_CONTACTS_PLUGIN_URL . 'assets/libs/font-awesome/css/all.min.css',
 			array(),
 			'6.7.2'
 		);
 
 		wp_enqueue_style(
 			'floating-contacts-admin',
-			PLUGIN_URL . "assets/css/admin{$suffix}.css",
+			FLOATING_CONTACTS_PLUGIN_URL . "assets/css/admin{$suffix}.css",
 			array(),
-			VERSION
+			FLOATING_CONTACTS_VERSION
 		);
 
 		wp_enqueue_script(
 			'floating-contacts-admin',
-			PLUGIN_URL . "assets/js/admin{$suffix}.js",
+			FLOATING_CONTACTS_PLUGIN_URL . "assets/js/admin{$suffix}.js",
 			array( 'jquery', 'wp-color-picker', 'wp-util' ),
-			VERSION,
+			FLOATING_CONTACTS_VERSION,
 			true
 		);
 

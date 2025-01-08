@@ -135,7 +135,7 @@ class Widget {
 		if ( ! empty( $this->settings['custom_links'] ) && ! $this->get_fontawesome_handle() ) {
 			wp_enqueue_style(
 				'floating-contacts-fontawesome',
-				PLUGIN_URL . 'assets/libs/font-awesome/css/all.min.css',
+				FLOATING_CONTACTS_PLUGIN_URL . 'assets/libs/font-awesome/css/all.min.css',
 				array(),
 				'6.7.2'
 			);
@@ -144,16 +144,16 @@ class Widget {
 
 		wp_enqueue_style(
 			'floating-contacts-frontend',
-			PLUGIN_URL . "assets/css/widget{$suffix}.css",
+			FLOATING_CONTACTS_PLUGIN_URL . "assets/css/widget{$suffix}.css",
 			array(),
-			VERSION
+			FLOATING_CONTACTS_VERSION
 		);
 
 		wp_enqueue_script(
 			'floating-contacts-frontend',
-			PLUGIN_URL . "assets/js/widget{$suffix}.js",
+			FLOATING_CONTACTS_PLUGIN_URL . "assets/js/widget{$suffix}.js",
 			array( 'jquery' ),
-			VERSION,
+			FLOATING_CONTACTS_VERSION,
 			true
 		);
 	}
