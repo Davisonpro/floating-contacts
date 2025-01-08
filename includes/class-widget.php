@@ -38,6 +38,15 @@ class Widget {
 	private $settings = array();
 
 	/**
+	 * FontAwesome version detected.
+	 *
+	 * @since  1.0.0
+	 * @access private
+	 * @var    string
+	 */
+	private $fa_version = '';
+
+	/**
 	 * Protected constructor to prevent creating a new instance of the
 	 * Singleton via the `new` operator from outside this class.
 	 *
@@ -122,14 +131,15 @@ class Widget {
 	public function enqueue_assets() {
 		$suffix = defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ? '' : '.min';
 
-		// only load FA fonts if custom links are present.
-		if ( ! empty( $this->settings['custom_links'] ) ) {
+		// Only load FA fonts if custom links are present and FA is not already loaded.
+		if ( ! empty( $this->settings['custom_links'] ) && ! $this->get_fontawesome_handle() ) {
 			wp_enqueue_style(
 				'floating-contacts-fontawesome',
 				PLUGIN_URL . 'assets/libs/font-awesome/css/all.min.css',
 				array(),
 				'6.7.2'
 			);
+			$this->fa_version = '6.7.2';
 		}
 
 		wp_enqueue_style(
@@ -146,6 +156,48 @@ class Widget {
 			VERSION,
 			true
 		);
+	}
+
+	/**
+	 * Check if FontAwesome is already enqueued and get its handle.
+	 *
+	 * @return string|false The handle of the enqueued FontAwesome stylesheet, or false if not found.
+	 */
+	private function get_fontawesome_handle() {
+		global $wp_styles;
+		$fa_handles = array(
+			'font-awesome',
+			'fontawesome',
+			'font-awesome-official',
+			'fontawesome-official',
+		);
+
+		foreach ( $wp_styles->registered as $handle => $style ) {
+			if ( in_array( $handle, $fa_handles, true ) ) {
+				$this->fa_version = $style->ver;
+				return $handle;
+			}
+			if ( false !== stripos( $style->src, 'font-awesome' ) || false !== stripos( $style->src, 'fontawesome' ) ) {
+				$this->fa_version = $style->ver;
+				return $handle;
+			}
+		}
+
+		return false;
+	}
+
+	/**
+	 * Get the appropriate FontAwesome class based on the detected version.
+	 *
+	 * @param string $icon The icon name.
+	 * @return string The FontAwesome class.
+	 */
+	private function get_fa_class( $icon ) {
+		if ( version_compare( $this->fa_version, '5.0.0', '>=' ) ) {
+			return $icon;
+		}
+
+		return str_replace( array( 'fab ', 'fas ' ), 'fa ', $icon );
 	}
 
 	/**
@@ -221,13 +273,13 @@ class Widget {
 
 		foreach ( $icons as $icon => $enabled ) {
 			if ( $enabled ) {
-				echo '<span data-icon="' . esc_attr( $icon ) . '"></span>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+				echo '<span data-icon="' . esc_attr( $icon ) . '"></span>';
 			}
 		}
 
 		if ( ! empty( $this->settings['custom_links'] ) ) {
 			foreach ( $this->settings['custom_links'] as $link ) {
-				echo '<span data-icon="' . esc_attr( $link['icon'] ) . '"></span>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+				echo '<span data-icon="' . esc_attr( $link['icon'] ) . '"></span>';
 			}
 		}
 	}
@@ -310,7 +362,7 @@ class Widget {
 	private function render_custom_links() {
 		if ( ! empty( $this->settings['custom_links'] ) ) {
 			foreach ( $this->settings['custom_links'] as $link ) {
-				$icon_class = ! empty( $link['icon'] ) ? $link['icon'] : 'fab fa-link';
+				$icon_class = ! empty( $link['icon'] ) ? $this->get_fa_class( $link['icon'] ) : $this->get_fa_class( 'link' );
 				?>
 				<a href="<?php echo esc_url( $link['url'] ); ?>" class="FloatingContacts__list-item" rel="nofollow noopener" target="_blank">
 					<i class="FloatingContacts__link-icon <?php echo esc_attr( $icon_class ); ?>" aria-hidden="true"></i>

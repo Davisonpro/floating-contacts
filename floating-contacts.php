@@ -109,7 +109,7 @@ function wordpress_version_error() {
  * @since 1.0.0
  * @return void
  */
-function initialize() {
+function initialize() { 
 	// Check PHP version.
 	if ( version_compare( PHP_VERSION, MINIMUM_PHP_VERSION, '<' ) ) {
 		add_action( 'admin_notices', __NAMESPACE__ . '\php_version_error' );
