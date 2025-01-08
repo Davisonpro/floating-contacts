@@ -24,7 +24,6 @@ class Plugin {
 	 * Plugin constructor.
 	 */
 	private function __construct() {
-		$this->init_hooks();
 		$this->load_dependencies();
 	}
 
@@ -41,14 +40,6 @@ class Plugin {
 		}
 
 		return self::$instance;
-	}
-
-	/**
-	 * Initialize hooks.
-	 *
-	 * @since 1.0.0
-	 */
-	private function init_hooks() {
 	}
 
 	/**
