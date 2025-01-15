@@ -35,6 +35,7 @@ define( 'FLOATING_CONTACTS_VERSION', '1.0.0' );
 define( 'FLOATING_CONTACTS_MINIMUM_PHP_VERSION', '7.4' );
 define( 'FLOATING_CONTACTS_MINIMUM_WP_VERSION', '5.2' );
 define( 'FLOATING_CONTACTS_NAMESPACE', __NAMESPACE__ );
+define( 'FLOATING_CONTACTS_BASENAME', plugin_basename( __FILE__ ) );
 define( 'FLOATING_CONTACTS_PLUGIN_DIR', plugin_dir_path( __FILE__ ) );
 define( 'FLOATING_CONTACTS_PLUGIN_URL', plugin_dir_url( __FILE__ ) );
 

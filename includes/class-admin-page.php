@@ -53,6 +53,7 @@ class Admin_Page {
 		add_action( 'admin_menu', array( $this, 'add_admin_menu' ) );
 		add_action( 'admin_init', array( $this, 'register_settings' ) );
 		add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_assets' ) );
+		add_filter( 'plugin_row_meta', array( $this, 'register_plugin_links' ), 10, 2 );
 	}
 
 	/**
@@ -149,6 +150,27 @@ class Admin_Page {
 			'floating_contacts',
 			array( $this, 'render_options_page' )
 		);
+	}
+
+	/**
+	 * Registers additional links for the floating contacts plugin on the WP plugin configuration page
+	 *
+	 * Registers the links if the $file param equals to the floating contacts plugin.
+	 *
+	 * @param array  $links An array of existing plugin action links.
+	 * @param string $file  The plugin file path to compare against.
+	 *
+	 * @return array Modified array of plugin action links.
+	 */
+	public function register_plugin_links( $links, $file ) {
+		if ( FLOATING_CONTACTS_BASENAME === $file ) {
+			$settings_url  = esc_url( admin_url( 'options-general.php?page=floating_contacts' ) );
+			$settings_link = sprintf( '<a href="%s">%s</a>', $settings_url, __( 'Settings', 'floating-contacts' ) );
+
+			$links[] = $settings_link;
+		}
+
+		return $links;
 	}
 
 	/**

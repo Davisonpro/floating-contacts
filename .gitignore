@@ -103,7 +103,6 @@ Session.vim
 .vscode
 *.map
 *.zip
-*.sh
 
 # Ignore JS license files
 *.js.LICENSE.txt
@@ -114,3 +113,6 @@ Session.vim
 # Composer
 composer.phar
 composer.lock
+
+# svn
+svn-floating-contacts/
