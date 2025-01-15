@@ -103,6 +103,7 @@ Session.vim
 .vscode
 *.map
 *.zip
+*.sh
 
 # Ignore JS license files
 *.js.LICENSE.txt
